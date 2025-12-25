@@ -1,4 +1,4 @@
-# Manticore -> FAISS HNSW Demo
+# KNN Compare: Manticore vs FAISS vs HNSWlib
 
 ## Requirements
 
@@ -7,7 +7,7 @@
 - Manticore `t` table containing columns:
   - `id` (integer)
   - `vec` (vector as string, e.g. `[0.1, 0.2, ...]`)
-- Build tools: C++ compiler + CMake
+- Build tools: C++ compiler + CMake 3.24+ (for FAISS submodule)
 - Dependencies: MySQL client headers, OpenMP (macOS), BLAS/LAPACK (Linux)
 - Submodules: `faiss`, `hnswlib`
 
@@ -65,6 +65,10 @@ Verbose FAISS build output:
 ```sh
 make FAISS_VERBOSE=1
 ```
+
+If you see linker errors like `undefined reference to __kmpc_fork_call`, rebuild
+FAISS with the same compiler as the demo (e.g., `make CXX=g++` or
+`make CXX=clang++`), and delete `faiss/build` before retrying.
 
 Clean build artifacts and cached indexes:
 
