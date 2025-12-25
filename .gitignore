@@ -1,0 +1,4 @@
+.vscode
+index*
+main.o
+knn_compare
